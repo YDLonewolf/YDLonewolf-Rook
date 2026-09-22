@@ -54,7 +54,7 @@ public class AddTraderWithAssortJson(
         addCustomTraderHelper.AddTraderWithEmptyAssortToDb(traderBase);
 
         // Add localisation text for our trader to the database so it shows to people playing in different languages
-        addCustomTraderHelper.AddTraderToLocales(traderBase, "Rook", "Former Black Division operative and Contract Wars veteran. After piecing together enough of TerraGroup's operations in Norvinsk to know he was expendable, Rook disappeared and built an independent supply network, moving weapons and equipment to PMCs looking for a way out of Tarkov.");
+        addCustomTraderHelper.AddTraderToLocales(traderBase, "Rook", "Former Black Division operative and Contract Wars veteran. After piecing together enough of TerraGroup's operations in Norvinsk to know he was expendable, Rook disappeared and built an independent supply network, moving weapons and equipment to PMCs looking for a way out of T*****.");
 
         // Get the assort data from JSON
         var assort = modHelper.GetJsonDataFromFile<TraderAssort>(pathToMod, "data/assort.json");
