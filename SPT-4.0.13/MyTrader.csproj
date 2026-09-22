@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>Rook</RootNamespace>
+	<AssemblyName>Rook</AssemblyName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <OutputType>Library</OutputType>
+
+    <!-- Set these to match your ModMetaData, this ensures the pathing, zip, and assembly version -->
+    <ModAuthor>YDLonewol</ModAuthor>
+    <Version>1.0.0</Version>
+
+    <!-- The two lines below will set the output path for the binaries -->
+    <OutputPath>bin\$(Configuration)\$(ProjectName)\$(AssemblyName)\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="SPTarkov.Common" Version="4.0.13" />
+    <PackageReference Include="SPTarkov.DI" Version="4.0.13" />
+    <PackageReference Include="SPTarkov.Server.Core" Version="4.0.13" />
+  </ItemGroup>
+  
+  <ItemGroup>
+      <None Include="Data\**">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>    
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Include="LICENSE">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <StaticWebAssetsEnabled>false</StaticWebAssetsEnabled>
+  </PropertyGroup>
+
+  <Target Name="ZipRelease" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
+    <PropertyGroup>
+      <ReleaseDirectory>$(MSBuildProjectDirectory)\ReleaseZip\</ReleaseDirectory>
+      <ZipOutput>$(ReleaseDirectory)$(ModAuthor)-$(AssemblyName)-$(Version)-SPT-4.0.13.zip</ZipOutput>
+      <ZipTempDir>$(IntermediateOutputPath)ReleaseZip\</ZipTempDir>
+    </PropertyGroup>
+
+    <!-- Create release directory -->
+    <MakeDir Directories="$(ReleaseDirectory)" />
+
+    <!-- Clean and create the temporary folder structure -->
+    <RemoveDir Directories="$(ZipTempDir)" />
+    <MakeDir Directories="$(ZipTempDir)SPT\user\mods\$(ModAuthor)-$(AssemblyName)" />
+
+    <!-- Copy the release DLL into the correct SPT folder -->
+    <ItemGroup>
+      <ReleaseFiles Include="$(TargetDir)**\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ReleaseFiles)" DestinationFiles="@(ReleaseFiles->'$(ZipTempDir)SPT\user\mods\$(ModAuthor)-$(AssemblyName)\%(RecursiveDir)%(Filename)%(Extension)')" />
+
+    <!-- Create the ZIP -->
+    <ZipDirectory SourceDirectory="$(ZipTempDir)" DestinationFile="$(ZipOutput)" Overwrite="true" />
+
+    <Message Importance="High" Text="Created release zip: $(ZipOutput)" />
+  </Target>
+  
+</Project>
