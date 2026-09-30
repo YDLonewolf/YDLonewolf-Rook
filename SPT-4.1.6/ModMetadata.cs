@@ -40,7 +40,7 @@ public record ModMetadata : IModMetadata
     /// MAJOR for breaking changes, MINOR for backwards-compatible features,
     /// and PATCH for backwards-compatible bug fixes.
     /// </summary>
-    public SemanticVersioning.Version Version { get; init; } = new("1.0.1");
+    public SemanticVersioning.Version Version { get; init; } = new("1.1.0");
 
     /// <summary>
     /// The range of SPT versions supported by this mod.
@@ -62,8 +62,11 @@ public record ModMetadata : IModMetadata
     /// Use this to declare mods that must be installed for this mod to function correctly.
     /// Leave null when the mod has no dependencies.
     /// </summary>
-    public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
-
+    public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new()
+        {
+    { "com.wtt.contentbackport", new SemanticVersioning.Range("~2.0.2") },
+         { "com.wtt.commonlib", new SemanticVersioning.Range("~3.0.6") }
+};
     /// <summary>
     /// An optional URL where users can find more information about the mod,
     /// such as its documentation, source code, or download page.

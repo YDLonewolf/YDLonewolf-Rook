@@ -10,7 +10,7 @@
 
     <!-- Set these to match your ModMetaData, this ensures the pathing, zip, and assembly version -->
     <ModAuthor>YDLonewolf</ModAuthor>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
 
     <!-- The two lines below will set the output path for the binaries -->
     <OutputPath>bin\$(Configuration)\$(ProjectName)\$(AssemblyName)\</OutputPath>
@@ -21,7 +21,13 @@
     <PackageReference Include="SPTushonka.Common" Version="4.1.6" />
     <PackageReference Include="SPTushonka.DI" Version="4.1.6" />
     <PackageReference Include="SPTushonka.Server.Core" Version="4.1.6" />
+	  <PackageReference Include="WTT-ServerCommonLib" Version="3.0.6" />
   </ItemGroup>
+	<ItemGroup>
+		<None Include="db\**\*">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
   
   <ItemGroup>
       <None Include="Data\**">
