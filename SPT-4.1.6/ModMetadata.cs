@@ -69,7 +69,7 @@ public record ModMetadata : IModMetadata
          { "com.epicrangetime.aio", new SemanticVersioning.Range("~5.0.1") },
          { "com.eukyre.ecot", new SemanticVersioning.Range("~2.0.1") },
          { "com.wtt.ecoattachmentemporium", new SemanticVersioning.Range("~3.0.0") },
-         { "com.wtt.armory", new SemanticVersioning.Range("~3.0.0") },
+         { "com.wtt.armory", new SemanticVersioning.Range("~2.0.5") },
 };
     /// <summary>
     /// An optional URL where users can find more information about the mod,
