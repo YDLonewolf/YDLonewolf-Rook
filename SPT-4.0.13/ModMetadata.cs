@@ -1,38 +1,38 @@
-﻿namespace MyTrader;
+﻿namespace Rook;
 
 using SPTarkov.Server.Core.Models.Spt.Mod;
 
-/// <summary>
+/// <summary>f
 /// This is required for all mods.
 /// This is where we define all the metadata associated with this mod.
 /// You don't have to do anything with it, other than fill it out.
 /// Properties you don't use may be left null.
 /// It is read by the mod loader when this mod is loaded.
 /// </summary>
-public record ModMetadata : AbstractModMetadata
+public record ModMetadata : IModMetadata
 {
     /// <summary>
     /// A unique identifier for the mod.
     /// Reverse domain notation is recommended to reduce the chance of conflicts with other mods,
     /// for example "com.example.mymod". Avoid generic identifiers such as "mymod" or "mod1".
     /// </summary>
-    public override string ModGuid { get; init; } = "com.ydlonewolf.rook";
+    public string ModGuid { get; init; } = "com.ydlonewolf.rook";
 
     /// <summary>
     /// The display name of the mod.
     /// </summary>
-    public override string Name { get; init; } = "Rook";
+    public string Name { get; init; } = "Rook";
 
     /// <summary>
     /// The primary author or maintainer of the mod.
     /// </summary>
-    public override string Author { get; init; } = "YDLonewolf";
+    public string Author { get; init; } = "YDLonewolf";
 
     /// <summary>
     /// A list of additional contributors who worked on the mod.
     /// Leave null when there are no additional contributors.
     /// </summary>
-    public override List<string>? Contributors { get; init; } = null;
+    public List<string>? Contributors { get; init; } = null;
 
     /// <summary>
     /// The current version of the mod using Semantic Versioning (SemVer).
@@ -40,7 +40,7 @@ public record ModMetadata : AbstractModMetadata
     /// MAJOR for breaking changes, MINOR for backwards-compatible features,
     /// and PATCH for backwards-compatible bug fixes.
     /// </summary>
-    public override SemanticVersioning.Version Version { get; init; } = new("1.0.1");
+    public SemanticVersioning.Version Version { get; init; } = new("1.2.0");
 
     /// <summary>
     /// The range of SPT versions supported by this mod.
@@ -49,37 +49,44 @@ public record ModMetadata : AbstractModMetadata
     /// The minimum version must match the version of the SPT NuGet package referenced by the mod.
     /// For example, if the mod references SPT NuGet version 4.1.2, use "~4.1.2".
     /// </summary>
-    public override SemanticVersioning.Range SptVersion { get; init; } = new("~4.0.13");
+    public SemanticVersioning.Range SptVersion { get; init; } = new("~4.1.6");
 
     /// <summary>
     /// A list of mod GUIDs that are incompatible with this mod.
     /// Leave null when the mod has no known incompatibilities.
     /// </summary>
-    public override List<string>? Incompatibilities { get; init; } = null;
+    public List<string>? Incompatibilities { get; init; } = null;
 
     /// <summary>
     /// A collection of mod GUIDs and the Semantic Versioning ranges of their required versions.
     /// Use this to declare mods that must be installed for this mod to function correctly.
     /// Leave null when the mod has no dependencies.
     /// </summary>
-    public override Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; }
-
+    public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new()
+        {
+    { "com.wtt.contentbackport", new SemanticVersioning.Range("~2.0.2") },
+         { "com.wtt.commonlib", new SemanticVersioning.Range("~3.0.6") },
+         { "com.epicrangetime.aio", new SemanticVersioning.Range("~5.0.1") },
+         { "com.eukyre.ecot", new SemanticVersioning.Range("~2.0.1") },
+         { "com.wtt.ecoattachmentemporium", new SemanticVersioning.Range("~3.0.0") },
+         { "com.wtt.armory", new SemanticVersioning.Range("~2.0.5") },
+};
     /// <summary>
     /// An optional URL where users can find more information about the mod,
     /// such as its documentation, source code, or download page.
     /// Leave null when no URL is available.
     /// </summary>
-    public override string? Url { get; init; } = null;
+    public string? Url { get; init; } = null;
 
     /// <summary>
     /// The license under which the mod is distributed.
     /// For example, "MIT", "GPL-3.0", or another applicable license identifier.
     /// </summary>
-    public override string License { get; init; } = "MIT";
+    public string License { get; init; } = "MIT";
 
     /// <summary>
     /// Indicates whether the mod uses Prepatcher.
     /// Set to true if the mod contains Prepatcher patches; otherwise leave false.
     /// </summary>
-    public override bool? IsBundleMod { get; init; } = false;
+    public bool HasPrepatcher { get; init; } = false;
 }
