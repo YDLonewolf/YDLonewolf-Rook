@@ -40,7 +40,7 @@ public record ModMetadata : IModMetadata
     /// MAJOR for breaking changes, MINOR for backwards-compatible features,
     /// and PATCH for backwards-compatible bug fixes.
     /// </summary>
-    public SemanticVersioning.Version Version { get; init; } = new("1.1.0");
+    public SemanticVersioning.Version Version { get; init; } = new("1.2.0");
 
     /// <summary>
     /// The range of SPT versions supported by this mod.
@@ -65,7 +65,11 @@ public record ModMetadata : IModMetadata
     public Dictionary<string, SemanticVersioning.Range>? ModDependencies { get; init; } = new()
         {
     { "com.wtt.contentbackport", new SemanticVersioning.Range("~2.0.2") },
-         { "com.wtt.commonlib", new SemanticVersioning.Range("~3.0.6") }
+         { "com.wtt.commonlib", new SemanticVersioning.Range("~3.0.6") },
+         { "com.epicrangetime.aio", new SemanticVersioning.Range("~5.0.1") },
+         { "com.eukyre.ecot", new SemanticVersioning.Range("~2.0.1") },
+         { "com.wtt.ecoattachmentemporium", new SemanticVersioning.Range("~3.0.0") },
+         { "com.wtt.armory", new SemanticVersioning.Range("~2.0.5") },
 };
     /// <summary>
     /// An optional URL where users can find more information about the mod,

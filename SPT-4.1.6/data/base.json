@@ -1,4 +1,4 @@
-﻿{
+{
   "_id": "28cc62227181902cef18a10b",
   "availableInRaid": false,
   "avatar": "/files/trader/avatar/ydlonewolf_rook_avatar.jpg",
@@ -23,12 +23,7 @@
   "isCanTransferItems": false,
   "isCanTransferItemsFromPve": false,
   "items_buy": {
-    "category": [
-      "5422acb9af1c889c16000029",
-      "5448fe124bdc2da5018b4567",
-      "5485a8684bdc2da71d8b4567",
-      "543be5664bdc2dd4348b4569"
-    ],
+    "category": [],
     "id_list": [
       "590c645c86f77412b01304d9",
       "590c651286f7741e566b6461",
