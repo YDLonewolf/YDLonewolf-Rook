@@ -1,7 +1,7 @@
 {
   "_id": "28cc62227181902cef18a10b",
   "availableInRaid": false,
-  "avatar": "/files/trader/avatar/ydlonewolf_rook_avatar.jpg",
+  "avatar": "/files/trader/avatar/rook_avatar_v2.jpg",
   "balance_dol": 0,
   "balance_eur": 0,
   "balance_rub": 7000000,
@@ -39,7 +39,8 @@
       "62a0a124de7ac81993580542",
       "574eb85c245977648157eec3",
       "590a386e86f77429692b27ab",
-      "6889e4cd3ff7e9cfbc0c507c"
+      "6889e4cd3ff7e9cfbc0c507c",
+      "6389c8c5dbfd5e4b95197e6b"
     ]
   },
   "items_buy_prohibited": {
